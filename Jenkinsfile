@@ -12,4 +12,14 @@ pipeline {
             }
         }
     }
+    stage('Test') {
+        steps {
+            sh 'env; mvn test'
+        }
+        post {
+            always {
+                junit 'target/surefire-reports/*.xml'
+            }
+        }
+    }
 }
